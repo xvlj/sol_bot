@@ -82,8 +82,7 @@ async def pos(ctx):
         await ctx.send("❌ Could not fetch SOL price.")
         print("Error in !pos command:", e)
 
-bot.run(TOKEN)
-
+        
 from flask import Flask
 import threading
 
@@ -98,3 +97,6 @@ def run_healthcheck_server():
 
 # Start it in a background thread
 threading.Thread(target=run_healthcheck_server, daemon=True).start()
+
+
+bot.run(TOKEN)
