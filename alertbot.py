@@ -83,3 +83,18 @@ async def pos(ctx):
         print("Error in !pos command:", e)
 
 bot.run(TOKEN)
+
+from flask import Flask
+import threading
+
+app = Flask(__name__)
+
+@app.route('/')
+def health():
+    return '✅ Bot is running!', 200
+
+def run_healthcheck_server():
+    app.run(host='0.0.0.0', port=8765)
+
+# Start it in a background thread
+threading.Thread(target=run_healthcheck_server, daemon=True).start()
