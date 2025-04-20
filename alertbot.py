@@ -13,8 +13,8 @@ intents = discord.Intents.default()
 intents.message_content = True  # Needed for sending messages
 
 bot = commands.Bot(command_prefix="!", intents=intents)
-sol_upper_target = 135.33
-sol_lower_target = 132.6
+sol_upper_target = 145.8
+sol_lower_target = 135.5
 
 @bot.event
 async def on_ready():
