@@ -82,21 +82,24 @@ async def pos(ctx):
         await ctx.send("❌ Could not fetch SOL price.")
         print("Error in !pos command:", e)
 
-        
 from flask import Flask
-import threading
+from threading import Thread
 
+# Create Flask app
 app = Flask(__name__)
 
-@app.route('/')
+@app.route("/health")
 def health():
-    return '✅ Bot is running!', 200
+    return "OK", 200
 
-def run_healthcheck_server():
-    app.run(host='0.0.0.0', port=8765)
+def run_flask():
+    # Bind to 0.0.0.0 so it’s visible to other devices on the network
+    app.run(host="0.0.0.0", port=8765)
 
-# Start it in a background thread
-threading.Thread(target=run_healthcheck_server, daemon=True).start()
+# Start Flask in background thread
+flask_thread = Thread(target=run_flask)
+flask_thread.daemon = True
+flask_thread.start()
 
 
 bot.run(TOKEN)
